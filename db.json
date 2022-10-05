@@ -1,0 +1,18 @@
+{
+  "suggestions": [
+    {
+        "suggestion": "test",
+        "id": 1
+      }
+  ] ,
+
+  "loandetails": [
+    {
+      "memberno": "MS780",
+      "member": "Ann Wanjiru",
+      "category": "Instant",
+      "amount": 40000,
+      "id": 1
+    }
+  ]
+}

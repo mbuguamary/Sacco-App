@@ -1,4 +1,5 @@
-import { Button, Form, Input, InputNumber } from 'antd';
+import { Form, Input, InputNumber } from 'antd';
+import { useState } from 'react';
 import React from 'react';
 const layout = {
   labelCol: {
@@ -12,34 +13,48 @@ const layout = {
 
 const validateMessages = {
   required: '${label} is required!',
-  types: {
-  number: '${label} is not a valid number!',
-  },
+  
   number: {
     range: '${label} must be between ${min} and ${max}',
   },
 };
 /* eslint-enable no-template-curly-in-string */
 
-const addLoanForm = () => {
+const AddLoanForm = () => {
   const onFinish = (values) => {
     console.log(values);
   };
 
-  const [fornData,setFormData] =useState({});
+  const [formData,setFormData] = useState({});
+  const [loan,setLoan] = useState({});
   function handleChange(e){
     setFormData({...FormData, [e.target.name]:[e.target.value]})
   }
 
-  function handleSubmit(){
-    fetch("")
+  function handleSubmit(e){
+    e.preventDefault();
+    fetch("http://localhost:8001/loandetails",
+    {
+      method:'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "accept":"application/json"
+      },
+      body: JSON.stringify(formData)
+
+    })
+    .then(res => res.json())
+    .then (data => {
+     setLoan([...loan,data])
+    })
+
   }
 
 
   return (
-    <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+    <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages} onSubmit={handleSubmit}>
       <Form.Item
-        name={['user', 'name']}
+      
         label="Name"
         rules={[
           {
@@ -47,10 +62,10 @@ const addLoanForm = () => {
           },
         ]}
       >
-        <Input />
+        <Input name="name" onChange={handleChange} />
       </Form.Item>
       <Form.Item
-        name={['user', 'MemberNo']}
+      
         label="Member No"
         rules={[
           {
@@ -58,32 +73,32 @@ const addLoanForm = () => {
           },
         ]}
       >
-        <Input />
+        <Input name="memberno" onChange={handleChange} />
+      </Form.Item>
+     
+      <Form.Item  label="Category">
+        <Input name="category" onChange={handleChange}/>
       </Form.Item>
       <Form.Item
-        name={['user', 'Amount']}
+        
         label="Amount"
         rules={[
           {
-            type: 'number',
-            min: 0,
-            max: 9999999,
+            required: true,
           },
         ]}
+      
       >
-        <Input/>
-      </Form.Item>
-      <Form.Item name={['user', 'Category']} label="Category">
-        <Input />
+        <Input name="amount" onChange={handleChange}/>
       </Form.Item>
       
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-        <Button type="primary" htmlType="submit">
+        <button type="submit" >
           Submit
-        </Button>
+        </button>
       </Form.Item>
     </Form>
   );
 };
 
-export default addLoanForm;
+export default AddLoanForm;

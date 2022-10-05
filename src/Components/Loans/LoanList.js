@@ -1,20 +1,30 @@
-import React from "react";
+import React ,{useEffect,useState}from "react";
 import Loans from "../Loans/Loans";
+import './Loans.css'
 
-function LoanList() {
-  const loans=[3, 2, 1, 3];
+function LoanList(props) {
+ 
+  const[loans,setLoans]= useState([])
+  
+  useEffect(()=>{
+    fetch("http://localhost:8000/loandetails")
+    .then(res => res.json())
+    .then(data => {setLoans(data);
+      
+    });
+  },[]);
   return (
     <table >
       <tbody>
-        { <tr>
-          <th>
+        { <tr >
+          <th >
             <h3 className="ui center aligned header">Id</h3>
           </th>
           <th>
-            <h3 className="ui center aligned header">Member No</h3>
+            <h3 className="ui center aligned header">Mem No</h3>
           </th>
           <th>
-            <h3 className="ui center aligned header">Member Name</h3>
+            <h3 className="ui center aligned header">Mem Name</h3>
 
           </th>
           <th>
@@ -30,8 +40,9 @@ function LoanList() {
           return (
           <Loans
           key={loan.id}
-          date={loan.memberno}
-          description={loan.member}
+          id={loan.id}
+          memberno={loan.memberno}
+          member={loan.member}
           category={loan.category}
           amount={loan.amount}
   

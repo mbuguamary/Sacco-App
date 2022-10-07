@@ -24,7 +24,7 @@ const AddLoanForm = () => {
   const onFinish = (values) => {
     console.log(values);
   };
-
+  const [form] = Form.useForm();
   const [formData,setFormData] = useState({});
   const [loan,setLoan] = useState({});
   function handleChange(e){
@@ -32,7 +32,8 @@ const AddLoanForm = () => {
   }
 
   function handleSubmit(e){
-    e.preventDefault();
+    //e.preventDefault();
+    console.log(e, " is the data")
     fetch("http://localhost:8001/loandetails",
     {
       method:'POST',
@@ -40,21 +41,22 @@ const AddLoanForm = () => {
         "Content-Type": "application/json",
         "accept":"application/json"
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(e)
 
     })
     .then(res => res.json())
-    .then (data => {
-     setLoan([...loan,data])
-    })
+    .then (data => data
+      )
+      form.resetFields();
+    
 
   }
 
 
   return (
-    <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages} onSubmit={handleSubmit}>
+    <Form  form={form} {...layout} name="nest-messages" onFinish={handleSubmit} validateMessages={validateMessages} onSubmit={handleSubmit}>
       <Form.Item
-      
+        name="member"
         label="Name"
         rules={[
           {
@@ -62,10 +64,10 @@ const AddLoanForm = () => {
           },
         ]}
       >
-        <Input name="name" onChange={handleChange} />
+        <Input  onChange={handleChange} />
       </Form.Item>
       <Form.Item
-      
+        name="memberno"
         label="Member No"
         rules={[
           {
@@ -73,14 +75,14 @@ const AddLoanForm = () => {
           },
         ]}
       >
-        <Input name="memberno" onChange={handleChange} />
+        <Input  onChange={handleChange} />
       </Form.Item>
      
-      <Form.Item  label="Category">
-        <Input name="category" onChange={handleChange}/>
+      <Form.Item name="category" label="Category">
+        <Input  onChange={handleChange}/>
       </Form.Item>
       <Form.Item
-        
+        name="amount"
         label="Amount"
         rules={[
           {
@@ -89,11 +91,11 @@ const AddLoanForm = () => {
         ]}
       
       >
-        <Input name="amount" onChange={handleChange}/>
+        <Input  onChange={handleChange}/>
       </Form.Item>
       
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-        <button type="submit" >
+        <button type="primary" htmlType="submit" >
           Submit
         </button>
       </Form.Item>

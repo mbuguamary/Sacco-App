@@ -14,7 +14,7 @@ const Navbar = () => (
       <div className="logo"  />
       <Menu theme="dark" mode="horizontal" />
       <NavLink    style={{
-          padding: '0 24px 24px',
+          padding: '0 24px 24px', float: 'Left'
         }} >Sacco Web App</NavLink>
       <NavLink to="/AddLoanForm" style={{
           padding: '0 24px 24px',
@@ -26,7 +26,7 @@ const Navbar = () => (
           padding: '0 24px 24px',
         }}>Questioners</NavLink>
       <NavLink to="/Login" style={{
-          padding: '0 24px 24px',
+          padding: '0 24px 24px', float: 'right'
         }}>Login</NavLink>
     </Header>
     <Layout>

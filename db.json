@@ -1,11 +1,14 @@
 {
   "suggestions": [
     {
-        "suggestion": "test",
-        "id": 1
-      }
-  ] ,
-
+      "suggestion": "test",
+      "id": 1
+    },
+    {
+      "suggestion": "this app is working",
+      "id": 2
+    }
+  ],
   "loandetails": [
     {
       "memberno": "MS780",
@@ -13,6 +16,20 @@
       "category": "Instant",
       "amount": 40000,
       "id": 1
+    },
+    {
+      "memberno": "MMM3",
+      "member": "Joe Wanjiru",
+      "category": "Instant",
+      "amount": 90000,
+      "id": 2
+    },
+    {
+      "member": "Faith",
+      "memberno": "M897",
+      "category": "INSTANT",
+      "amount": "10000",
+      "id": 3
     }
   ]
 }

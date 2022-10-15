@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Sacco-App/static/css/main.39bab5e2.css",
+    "main.js": "/Sacco-App/static/js/main.9a9d6123.js",
+    "static/js/787.043e6aaf.chunk.js": "/Sacco-App/static/js/787.043e6aaf.chunk.js",
+    "index.html": "/Sacco-App/index.html",
+    "main.39bab5e2.css.map": "/Sacco-App/static/css/main.39bab5e2.css.map",
+    "main.9a9d6123.js.map": "/Sacco-App/static/js/main.9a9d6123.js.map",
+    "787.043e6aaf.chunk.js.map": "/Sacco-App/static/js/787.043e6aaf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.39bab5e2.css",
+    "static/js/main.9a9d6123.js"
+  ]
+}

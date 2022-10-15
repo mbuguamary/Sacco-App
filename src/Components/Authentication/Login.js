@@ -2,7 +2,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
 import React from 'react';
 import App from '../../App';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import {Link } from 'react-router-dom';
 
 const Login = () => {
   const onFinish = (values) => {

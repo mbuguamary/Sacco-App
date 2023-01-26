@@ -60,7 +60,7 @@ const Login = () => {
           Log in
         </Button>
         </Link>
-        Or <a href="">register now!</a>
+        Or<Link to="/">  <a href="">register now!</a> </Link>
       </Form.Item>
     </Form>
   );

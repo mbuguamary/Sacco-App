@@ -11,25 +11,63 @@
   ],
   "loandetails": [
     {
-      "memberno": "MS780",
-      "member": "Ann Wanjiru",
-      "category": "Instant",
-      "amount": 40000,
-      "id": 1
-    },
-    {
-      "memberno": "MMM3",
-      "member": "Joe Wanjiru",
-      "category": "Instant",
-      "amount": 90000,
-      "id": 2
-    },
-    {
       "member": "Faith",
       "memberno": "M897",
       "category": "INSTANT",
       "amount": "10000",
       "id": 3
+    },
+    {
+      "member": "moses ",
+      "memberno": "mh4567",
+      "category": "instant",
+      "amount": "40000",
+      "id": 4
+    },
+    {
+      "member": "ann",
+      "memberno": "mhs7888",
+      "category": "instant",
+      "amount": "20000",
+      "id": 5
+    },
+    {
+      "member": "njeri",
+      "memberno": "67",
+      "category": "development",
+      "amount": "100000",
+      "id": 6
+    },
+    {
+      "member": "muthoni",
+      "memberno": "68",
+      "category": "development",
+      "amount": "100000",
+      "id": 7
+    }
+  ],
+  "members": [
+    {
+      "member": "anne wangui",
+      "gender": "female",
+      "age": "30",
+      "mobile": "071768909",
+      "email": "m@gmail.com",
+      "savings": "2000",
+      "idno": "3456789",
+      "residence": "umoja",
+      "id": 1
+    },
+    {
+      "member": "wambui Nyutu",
+      "idno": "2345678",
+      "gender": "female",
+      "age": "20",
+      "residence": "Adams",
+      "mobile": "909876655",
+      "email": "nyutu@gmail.com",
+      "savings": "5000",
+      "id": 2
     }
   ]
 }

@@ -45,12 +45,14 @@ const AddLoanForm = () => {
 
     })
     .then(res => res.json())
-    .then (data => data
-      )
+    .then (data => {alert('Data submitted successfully')
+   } )
+      
       form.resetFields();
     
 
   }
+ 
 
 
   return (

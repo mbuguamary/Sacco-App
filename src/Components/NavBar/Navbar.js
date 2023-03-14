@@ -44,13 +44,19 @@ const Navbar = () => (
         >
 
          
+         
+          <Menu.Item>
+           <Link to="/AddMemberForm"> Create New Member</Link>
+          </Menu.Item>
           <Menu.Item>
            <Link to="/AddLoanForm"> Register Loan </Link>
            </Menu.Item>
            <Menu.Item>
            <Link to="/LoanList"> Applied Loan List</Link>
           </Menu.Item>
-           
+          <Menu.Item>
+           <Link to="/MemberDetails"> Member Profile</Link>
+          </Menu.Item>
 
             </Menu>
       </Sider>

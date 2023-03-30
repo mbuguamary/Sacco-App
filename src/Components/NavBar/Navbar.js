@@ -55,6 +55,9 @@ const Navbar = () => (
            <Link to="/LoanList"> Applied Loan List</Link>
           </Menu.Item>
           <Menu.Item>
+           <Link to="/SplitDividend"> Split Dividend</Link>
+          </Menu.Item>
+          <Menu.Item>
            <Link to="/MemberDetails"> Member Profile</Link>
           </Menu.Item>
 

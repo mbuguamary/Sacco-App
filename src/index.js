@@ -13,6 +13,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AddMemberForm from './Components/Authentication/AddMemberForm';
 import MemberDetails from './Components/Authentication/MemberDetails';
+import UpdateLoanData from './Components/Loans/UpdateLoanData';
+import SplitDividend from './Components/Loans/SplitDividend';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -27,6 +29,8 @@ root.render(
             <Route path="/Login" element={<Login/>}/>
             <Route path ="/AddMemberForm" element={<AddMemberForm />}/>
             <Route path ="/MemberDetails" element={<MemberDetails />}/>
+            <Route path ="/UpdateLoanData" element={<UpdateLoanData />}/>
+            <Route path ="/SplitDividend" element={<SplitDividend />}/>
         </Route>
         
     </Routes>

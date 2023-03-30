@@ -1,6 +1,7 @@
+import {Link} from 'react-router-dom';
+import UpdateLoanData from './UpdateLoanData';
 
-
-function Loan({id,memberno,member,category,amount,loan,onUpdateItem, onDeleteItem}) {
+function Loan({id,memberno,member,category,amount,loan, onDeleteItem}) {
   function handleDelete(){
     fetch(`http://localhost:8001/loandetails/${id}`, {
     method: "DELETE"
@@ -8,23 +9,7 @@ function Loan({id,memberno,member,category,amount,loan,onUpdateItem, onDeleteIte
     .then((r) => r.json)
     .then(() => onDeleteItem(loan))
   }
-  
-  function handleUpdate(){
-    fetch(`http://localhost:4000/loandetails/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-       
-      }),
-    })
-      .then((r) => r.json())
-      .then((updatedLoan) => onUpdateItem(updatedLoan));
-  }
 
-
-  
   
   
   return (
@@ -34,7 +19,7 @@ function Loan({id,memberno,member,category,amount,loan,onUpdateItem, onDeleteIte
         <td>{member}</td>
         <td>{category}</td>
         <td>{amount}</td>
-        <td><button onClick={handleUpdate}>Edit</button></td>
+        <td><button> <Link to='/UpdateLoanData' state={{"Data": {...id, ...memberno, ...member, ...category, ...amount}}}>Edit</Link></button></td>
         <td><button onClick={handleDelete}>Delete</button></td>
       </tr>
     );

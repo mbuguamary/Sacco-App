@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.signup{
+  margin-left: 80px;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center; 
+  border: 3px solid whitesmoke; 
+  border-radius: 10px;
+  margin-right: 700px;
+}
+
+.login{
+  margin-left: 80px;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center; 
+  margin-right: 700px;
+
+}
+
+
+.border{
+   border: 3px solid whitesmoke; 
+   border-radius: 10px;
+  
+}

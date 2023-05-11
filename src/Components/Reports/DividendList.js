@@ -17,22 +17,31 @@ fetch(`http://localhost:8080/api/v1/instant/${member_no}`)
 
   return (
     <div>
+        <table >
+            <tbody>
+            <tr   >
+                <th className='full'>Member Statement Summary</th>
+                </tr>
+            <tr >
+                <th >Name</th>
+                </tr>
+            </tbody>
+        </table>
     <table>
         <tbody>
-        <tr>
-                <th>Member Statement Summary</th>
-                </tr>
-            <tr>
-                <th>Name</th>
-                </tr>
-            <tr>
-                <th>member_no</th>
-                <th>tel</th>
+       
+            <tr >
+                <th className='half' >member_no</th>
+                <th className='half'>tel</th>
                 </tr>
                 <tr>
                 <th>email</th>
                 <th>Id no</th>
                 </tr>
+                </tbody>
+                </table>
+                <table>
+                    <tbody>
                 <tr>
                 <th>Print Date</th>
                 <th>Shares</th>

@@ -36,3 +36,18 @@ code {
    border-radius: 10px;
   
 }
+ table, th{
+  border: 1px solid;
+}
+
+.half{
+  width: 50%;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+}
+.full{
+  text-align: center;
+}

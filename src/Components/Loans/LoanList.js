@@ -7,7 +7,7 @@ function LoanList(props) {
   const[loans,setLoans]= useState([])
   
   useEffect(()=>{
-    fetch("http://localhost:8001/loandetails")
+    fetch("http://localhost:8080/api/v1/loan")
     .then(res => res.json())
     .then(data => {setLoans(data);
       

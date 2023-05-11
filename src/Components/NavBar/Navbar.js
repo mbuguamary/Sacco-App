@@ -63,7 +63,12 @@ const Navbar = () => (
           <Menu.Item>
            <Link to="/app/Instant"> Instant</Link>
           </Menu.Item>
+          <Menu.Item>
+           <Link to="/app/DividendList"> Dividend List</Link>
+          </Menu.Item>
             </Menu>
+
+            
       </Sider>
       <Layout
         style={{

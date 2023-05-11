@@ -2,35 +2,39 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
+import App from './App';
 import AddLoanForm from './Components/Loans/AddLoanForm';
 import LoanList from './Components/Loans/LoanList';
 import Notes from './Components/Notes/Notes'
 import Questions from './Components/Notes/question';
 import Login from './Components/Authentication/Login';
-
-
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AddMemberForm from './Components/Authentication/AddMemberForm';
 import MemberDetails from './Components/Authentication/MemberDetails';
 import UpdateLoanData from './Components/Loans/UpdateLoanData';
 import SplitDividend from './Components/Loans/SplitDividend';
-
+import SignUp from './Components/Authentication/SignUp';
+import Instant from './Components/Loans/Instant';
+import CreateUser from './Components/Authentication/CreateUser';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
-        <Route path="/" element={<App/>}>
-            <Route path="/AddLoanForm" element={<AddLoanForm/>}/>
-            <Route path="/LoanList" element={<LoanList/>}/>
-            <Route path="/Notes" element={<Notes/>}/>
-            <Route path="/Questions" element={<Questions/>}/>
-            <Route path="/Login" element={<Login/>}/>
-            <Route path ="/AddMemberForm" element={<AddMemberForm />}/>
-            <Route path ="/MemberDetails" element={<MemberDetails />}/>
-            <Route path ="/UpdateLoanData" element={<UpdateLoanData />}/>
-            <Route path ="/SplitDividend" element={<SplitDividend />}/>
+            <Route path="/" element={<Login/>}/>
+            <Route path ="/SignUp" element={<SignUp/>}/>
+            <Route path ="/CreateUser" element={<CreateUser />}/>
+             <Route path="/app" element={<App/>}> 
+            <Route path="/app/AddLoanForm" element={<AddLoanForm/>}/>
+            <Route path="/app/LoanList" element={<LoanList/>}/>
+            <Route path="/app/Notes" element={<Notes/>}/>
+            <Route path="/app/Questions" element={<Questions/>}/>
+            <Route path="/app/Login" element={<Login/>}/>
+            <Route path ="/app/AddMemberForm" element={<AddMemberForm />}/>
+            <Route path ="/app/MemberDetails" element={<MemberDetails />}/>
+            <Route path ="/app/UpdateLoanData" element={<UpdateLoanData />}/>
+            <Route path ="/app/SplitDividend" element={<SplitDividend />}/>
+            <Route path ="/app/Instant" element={<Instant />}/>
         </Route>
         
     </Routes>

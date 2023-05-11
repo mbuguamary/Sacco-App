@@ -19,15 +19,15 @@ const Navbar = () => (
       <NavLink to="/AddLoanForm" style={{
           padding: '0 24px 24px',
         }}>Home</NavLink>
-      <NavLink to="/Notes" style={{
+      <NavLink to="/app/Notes" style={{
           padding: '0 24px 24px',
         }}>Notes</NavLink>
-      <NavLink to="/Questions" style={{
+      <NavLink to="/app/Questions" style={{
           padding: '0 24px 24px',
         }}>Questioners</NavLink>
-      <NavLink to="/Login" style={{
+      <NavLink to="/" style={{
           padding: '0 24px 24px', float: 'right'
-        }}>Login</NavLink>
+        }}>Log Out</NavLink>
     </Header>
     <Layout>
       <Sider width={200} className="site-layout-background">
@@ -46,21 +46,23 @@ const Navbar = () => (
          
          
           <Menu.Item>
-           <Link to="/AddMemberForm"> Create New Member</Link>
+           <Link to="/app/AddMemberForm"> Create New Member</Link>
           </Menu.Item>
           <Menu.Item>
-           <Link to="/AddLoanForm"> Register Loan </Link>
+           <Link to="/app/AddLoanForm"> Register Loan </Link>
            </Menu.Item>
            <Menu.Item>
-           <Link to="/LoanList"> Applied Loan List</Link>
+           <Link to="/app/LoanList"> Applied Loan List</Link>
           </Menu.Item>
           <Menu.Item>
-           <Link to="/SplitDividend"> Split Dividend</Link>
+           <Link to="/app/SplitDividend"> Split Dividend</Link>
           </Menu.Item>
           <Menu.Item>
-           <Link to="/MemberDetails"> Member Profile</Link>
+           <Link to="/app/MemberDetails"> Member Profile</Link>
           </Menu.Item>
-
+          <Menu.Item>
+           <Link to="/app/Instant"> Instant</Link>
+          </Menu.Item>
             </Menu>
       </Sider>
       <Layout

@@ -1,0 +1,25 @@
+.input-wrapper{
+    background-color:white;
+    border-radius: 10px;
+    height:1.9rem;
+    padding: 0 15px;
+    box-shadow: 0px 0px 8px grey; 
+    display: flex;
+    align-items: center;
+
+}
+.input-wrapper input{
+    background-color: transparent;
+    border:none;
+    height: 100px;
+    font-size: 1.25rem;
+    
+    margin-left: 5px;
+}
+.input-wrapper input:focus{
+    outline: none;
+}
+
+#search-icon{
+    color: blue;
+}

@@ -3,27 +3,52 @@ import Dividends from "../Reports/Dividends";
 
 const DividendList = (member_no) => {
 const [dividends, setDividends] = useState([]);
-
+const [header, setHeader] = useState([]);
+const [member, setMember] = useState([]);
 useEffect(() =>{
 fetch(`http://localhost:8080/api/v1/instant/${member_no}`)
-.then(res => res.json())
-.then(data => {setDividends(data);
+.then((res) => {
+  if (res.ok) {
+  res.json().then((data) => setDividends(data));
+} 
+
       
     });
 
 },[])
 
-    
+useEffect(() =>{
+  fetch("http://localhost:8080/api/v1/header")
+  .then((res) => {
+    if (res.ok) {
+      res.json() .then((header) => setHeader(header));
+  } 
+ 
+        
+      });
+  
+  },[])
+   
+  useEffect(()=> {
+    fetch("http://localhost:8001/member/1")
+    .then((response) => {
+        if (response.ok) {
+          response.json().then((member) => setMember(member));
+        }
+      });
+    },
+[])
 
   return (
     <div>
+      <p>{header.header}</p>
         <table >
             <tbody>
             <tr   >
-                <th className='full'>Member Statement Summary</th>
+                <th className='full'>Dividend Statement</th>
                 </tr>
             <tr >
-                <th >Name</th>
+                <th >Name:{member.holders_name}</th>
                 </tr>
             </tbody>
         </table>
@@ -31,12 +56,12 @@ fetch(`http://localhost:8080/api/v1/instant/${member_no}`)
         <tbody>
        
             <tr >
-                <th className='half' >member_no</th>
-                <th className='half'>tel</th>
+                <th className='half' >member_no:{member.acc_no}</th>
+                <th className='half'>tel:{member.tel1}</th>
                 </tr>
                 <tr>
-                <th>email</th>
-                <th>Id no</th>
+                <th>email:{member.email_add}</th>
+                <th>Id no:{member.id_no}</th>
                 </tr>
                 </tbody>
                 </table>
@@ -55,31 +80,26 @@ fetch(`http://localhost:8080/api/v1/instant/${member_no}`)
     <tbody>
       { <tr >
         <th >
-          <h3 className="ui center aligned header">Loan No</h3>
+          <h3 className="ui center aligned header">Date</h3>
         </th>
         <th>
-          <h3 className="ui center aligned header">Purpose</h3>
+          <h3 className="ui center aligned header">Narration</h3>
         </th>
         <th>
-          <h3 className="ui center aligned header">Sdate</h3>
+          <h3 className="ui center aligned header">Ref</h3>
 
         </th>
         <th>
-          <h3 className="ui center aligned header">Edate</h3>
+          <h3 className="ui center aligned header">Dividend</h3>
           
         </th>
         <th>
-          <h3 className="ui center aligned header">Period</h3>
+          <h3 className="ui center aligned header">Paid</h3>
         </th>
         <th>
-          <h3 className="ui center aligned header">Original Amount</h3>
+          <h3 className="ui center aligned header">Running Amt</h3>
         </th>
-        <th>
-          <h3 className="ui center aligned header">Debit</h3>
-        </th>
-        <th>
-          <h3 className="ui center aligned header">Credits</h3>
-        </th>
+        
       </tr> }
 
       {dividends.map(dividend => {

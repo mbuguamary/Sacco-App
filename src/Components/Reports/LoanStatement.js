@@ -2,14 +2,14 @@ import React from 'react'
 import LoanStatementList from './LoanStatementList';
 
 const LoanStatement = () => {
-    const [dividends, setDividends] = useState([]);
+    const [loans, setLoans] = useState([]);
     const [header, setHeader] = useState([]);
     const [member, setMember] = useState([]);
     useEffect(() =>{
     fetch(`http://localhost:8080/api/v1/instant/${member_no}`)
     .then((res) => {
       if (res.ok) {
-      res.json().then((data) => setDividends(data));
+      res.json().then((loans) => setLoans(loans));
     } 
     
           
@@ -107,17 +107,17 @@ const LoanStatement = () => {
             </th>
           </tr> }
     
-          {dividends.map(dividend => {
+          {loans.map(loan => {
             return (
             <LoanStatementList
-            key={dividend.id}
-            id={dividend.id}
-            loanno={dividend.loan_no}
-            purpose={dividend.purpose}
-            cdate={dividend.cdate}
-            sdate={dividend.sdate}
-            period={dividend.period}
-            amount={dividend.amount}
+            key={loan.id}
+            id={loan.id}
+            loanno={loan.loan_no}
+            purpose={loan.purpose}
+            cdate={loan.cdate}
+            sdate={loan.sdate}
+            period={loan.period}
+            amount={loan.amount}
             />
           );
             }

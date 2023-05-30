@@ -70,7 +70,7 @@ const validateMessages = {
 const handleChange = (value) => {
   console.log(`selected ${value}`);
 };
-const AddLoanForm = () => {
+const AddLoanForm = (authToken) => {
 
   const [total,setTotal] =useState(0)
   const [value, setValue] = useState([]);
@@ -108,7 +108,8 @@ const AddLoanForm = () => {
       method:'POST',
       headers: {
         "Content-Type": "application/json",
-        "accept":"application/json"
+        "accept":"application/json",
+        Authorization:`Bearer${authToken}`
       },
       body: JSON.stringify(e)
 

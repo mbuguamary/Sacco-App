@@ -30,11 +30,21 @@ const Login = () => {
 
     }).then((r) => {
        if(r.ok){
+        
         alert("login Successful" );
         window.location.replace("/app");
        }
      
-    });
+    }
+      
+    ).then((data) => {
+      localStorage.setItem('access', data.access);
+      localStorage.setItem('refresh', data.refresh);
+     
+      console.log("mary");
+
+    })
+    
     
     form.resetFields();
   }

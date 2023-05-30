@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Table, Input } from 'antd';
+import { Form, Table, Input,Select, InputNumber } from 'antd';
 const layout = {
     labelCol: {
       span: 8,
@@ -8,19 +8,84 @@ const layout = {
       span: 16,
     },
   };
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
   const columns = [
     {
       title: 'Mode',
       dataIndex: 'mode',
       key: 'mode',
-      render: (text) => <a>{text}</a>,
+      render: () => {
+      return (
+        <Select
+        id='months'
+      defaultValue="CAPITALIZE TO SHARES"
+      style={{
+        width: 250,
+      }}
+      onChange={handleChange}
+      options={[
+        {
+          value: 'CAPITALIZE TO SHARES',
+          label: 'CAPITALIZE TO SHARES',
+        },
+        {
+          value: 'PAY THROUGH EFT(MOBILE)',
+          label: 'PAY THROUGH EFT(MOBILE)',
+        },
+        {
+          value: 'OFFSET A LOAN',
+          label: 'OFFSET A LOAN',
+        },
+        {
+          value: 'OFFSET HOSPITAL BILL',
+          label: 'OFFSET HOSPITAL BILL',
+         // disabled: true,
+        },
+      ]}
+
+       />
+        );
+      },
+      
     },
     {
       title: 'Amount',
       dataIndex: 'amount',
       key: 'amount',
+      render:() =>{
+      return  <Input
+      ></Input>
+      }
     },
+    
 ];
+
+const dataSource=[
+  {
+    mode:'test',
+    amount:0
+  },
+  {
+    mode:'test',
+    amount:0
+  },
+  {
+    mode:'test',
+    amount:0
+  },
+  {
+    mode:'test',
+    amount:0
+  },
+  {
+    mode:'test',
+    amount:0
+  },
+]
+
+
 
 const SplitDividend = () => {
     const [form] = Form.useForm();
@@ -30,7 +95,10 @@ const SplitDividend = () => {
   return (
       
         <Form form={form} {...layout} name="nest-messages" onFinish={handleSubmit}  onSubmit={handleSubmit}> 
-          <Table columns={columns} />
+          <Table columns={columns}
+           dataSource={dataSource}
+           
+           />
         <Form.Item name="gross" label="Gross Dividend">
         <Input  />
       </Form.Item>

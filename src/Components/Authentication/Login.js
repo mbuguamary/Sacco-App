@@ -28,22 +28,20 @@ const Login = () => {
       },
       body:JSON.stringify(e)
 
-    }).then((r) => {
-       if(r.ok){
-        
+    }).then((res) => res.json())
+    .then((data) => {
+      console.log("sign in res ", data);
+      localStorage.setItem('access', data.token);
+      // localStorage.setItem('refresh', data.refresh);
+
         alert("login Successful" );
         window.location.replace("/app");
-       }
-     
-    }
-      
-    ).then((data) => {
-      localStorage.setItem('access', data.access);
-      localStorage.setItem('refresh', data.refresh);
-     
-      console.log("mary");
-
+        let email=document.querySelector('#email').value
+        document.querySelector('#memno').value=email;
     })
+    .catch(err => console.log(
+      "There was an error logging in", err
+    ))
     
     
     form.resetFields();
@@ -73,7 +71,7 @@ const Login = () => {
           },
         ]}
       >
-        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+        <Input id='email' prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
       </Form.Item>
       <label>Password</label>
       <Form.Item

@@ -59,6 +59,12 @@ const layout = {
       ></Input>
       }
     },
+     {
+      title: 'Amount',
+      dataIndex: 'amount',
+      
+      
+    },
     
 ];
 

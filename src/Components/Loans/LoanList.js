@@ -1,20 +1,39 @@
 import React ,{useEffect,useState}from "react";
 import Loans from "../Loans/Loans";
-import './Loans.css'
+import './Loans.css';
+import axios from 'axios';
+import { useCallback } from "react";
 
+const apiUrl='http://localhost:8080/api' ;
+const accessToken =localStorage.getItem("access");
+console.log("ACCESS TOKEN FROM LOCAL STORAGE ", accessToken)
+const authAxios =axios.create({
+  baseUrl:apiUrl,
+  headers: {
+    Authorization:`Bearer ${accessToken}`
+  }
+})
 function LoanList(props) {
  
-  const[loans,setLoans]= useState([])
-  
-  useEffect(()=>{
-    fetch("http://localhost:8080/api/v1/loan")
-    .then(res => res.json())
-    .then(data => {setLoans(data);
+  const[loans,setLoans]= useState([]);
+  const [requestError,setRequestError] =useState([]);
+  // useEffect(()=>{
+  //   fetch("http://localhost:8080/api/v1/loan")
+  //   .then(res => res.json())
+  //   .then(data => {setLoans(data);
       
-    });
-  },[]);
+  //   });
+  // },[]);
 
-
+  const fetchData =useCallback(async ()=>{
+    try{
+     const result= await authAxios.get(`/v1/loan`)
+    setLoans(result.data);
+    } catch (err){
+    setRequestError(err.message);
+    }
+  });
+  fetchData();
   function handleDeleteItem(deletedLoan) {
     const updatedItems = loans.filter((loan) => loan.id !== deletedLoan.id);
     setLoans(updatedItems);

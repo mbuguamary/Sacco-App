@@ -25,9 +25,14 @@ const Navbar = () => (
       <NavLink to="/app/Questions" style={{
           padding: '0 24px 24px',
         }}>Questioners</NavLink>
+        
       <NavLink to="/" style={{
           padding: '0 24px 24px', float: 'right'
         }}>Log Out</NavLink>
+        <NavLink 
+        >Member No <p id='memno' style={{
+          backgroundcolor: 'red',width:'10px'
+        }} text/></NavLink>
     </Header>
     <Layout>
       <Sider width={200} className="site-layout-background">

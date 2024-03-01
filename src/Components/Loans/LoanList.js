@@ -24,7 +24,7 @@ function LoanList(props) {
       
   //   });
   // },[]);
-
+ 
   const fetchData =useCallback(async ()=>{
     try{
      const result= await authAxios.get(`/v1/loan`)
@@ -34,21 +34,22 @@ function LoanList(props) {
     }
   });
   fetchData();
-  function handleDeleteItem(deletedLoan) {
-    const updatedItems = loans.filter((loan) => loan.id !== deletedLoan.id);
-    setLoans(updatedItems);
-  }
 
-  function handleUpdateItem(updatedLoan) {
-    const updatedItems = loans.map((loan) => {
-      if (loan.id === updatedLoan.id) {
-        return updatedLoan;
-      } else {
-        return loan;
-      }
-    });
-    setLoans(updatedItems);
-  }
+  // function handleDeleteItem(deletedLoan) {
+  //   const updatedItems = loans.filter((loan) => loan.id !== deletedLoan.id);
+  //   setLoans(updatedItems);
+  // }
+
+  // function handleUpdateItem(updatedLoan) {
+  //   const updatedItems = loans.map((loan) => {
+  //     if (loan.id === updatedLoan.id) {
+  //       return updatedLoan;
+  //     } else {
+  //       return loan;
+  //     }
+  //   });
+  //   setLoans(updatedItems);
+  // }
   return (
     <table >
       <tbody>
@@ -70,12 +71,12 @@ function LoanList(props) {
           <th>
             <h3 className="ui center aligned header">Amount</h3>
           </th>
-          <th>
+          {/* <th>
             <h3 className="ui center aligned header">Edit</h3>
           </th>
           <th>
             <h3 className="ui center aligned header">Delete</h3>
-          </th>
+          </th> */}
         </tr> }
 
         {loans.map(loan => {
@@ -87,8 +88,8 @@ function LoanList(props) {
           member={loan.member}
           category={loan.category}
           amount={loan.amount}
-          onUpdateItem={handleUpdateItem}
-          onDeleteItem={handleDeleteItem}
+          // onUpdateItem={handleUpdateItem}
+          // onDeleteItem={handleDeleteItem}
           />
         );
           }

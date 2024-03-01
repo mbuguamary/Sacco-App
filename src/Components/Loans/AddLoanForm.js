@@ -1,9 +1,16 @@
 import { Form, Input, InputNumber,Spin, Select, Space,AutoComplete} from 'antd';
 import { useState } from 'react';
 import React from 'react';
-import debounce from 'lodash/debounce';
-import { useMemo, useRef } from 'react';
-import {FaSearch} from  "react-icons/fa";
+import axios from 'axios'
+const apiUrl='http://localhost:8080/api' ;
+const accessToken =localStorage.getItem("access");
+console.log("ACCESS TOKEN FROM LOCAL STORAGE ", accessToken)
+const authAxios =axios.create({
+  baseUrl:apiUrl,
+  headers: {
+    Authorization:`Bearer ${accessToken}`
+  }
+})
 const layout = {
   labelCol: {
     span: 8,
@@ -13,49 +20,7 @@ const layout = {
   },
 };
 
-function DebounceSelect({ fetchOptions, debounceTimeout = 800, ...props }) {
-  const [fetching, setFetching] = useState(false);
-  const [options, setOptions] = useState([]);
-  const fetchRef = useRef(0);
-  const debounceFetcher = useMemo(() => {
-    const loadOptions = (value) => {
-      fetchRef.current += 1;
-      const fetchId = fetchRef.current;
-      setOptions([]);
-      setFetching(true);
-      fetchOptions(value).then((newOptions) => {
-        if (fetchId !== fetchRef.current) {
-          // for fetch callback order
-          return;
-        }
-        setOptions(newOptions);
-        setFetching(false);
-      });
-    };
-    return debounce(loadOptions, debounceTimeout);
-  }, [fetchOptions, debounceTimeout]);
-  return (
-    <Select
-      labelInValue
-      filterOption={false}
-      onSearch={debounceFetcher}
-      notFoundContent={fetching ? <Spin size="small" /> : null}
-      {...props}
-      options={options}
-    />
-  );
-}
-async function fetchUserList(username) {
-  console.log('fetching user', username);
-  return fetch('https://randomuser.me/api/?results=5')
-    .then((response) => response.json())
-    .then((body) =>
-      body.results.map((user) => ({
-        label: `${user.name.first} ${user.name.last}`,
-        value: user.login.username,
-      })),
-    );
-}
+
 
 /* eslint-disable no-template-curly-in-string */
 
@@ -67,9 +32,7 @@ const validateMessages = {
   },
 };
 /* eslint-enable no-template-curly-in-string */
-const handleChange = (value) => {
-  console.log(`selected ${value}`);
-};
+
 const AddLoanForm = (authToken) => {
 
   const [total,setTotal] =useState(0)
@@ -99,26 +62,19 @@ const AddLoanForm = (authToken) => {
     setTotal(totalAmount)
     console.log(totalAmount);
   }
-
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
   function handleSubmit(e){
     //e.preventDefault();
     console.log(e, " is the data")
-    fetch("http://localhost:8080/api/v1/loan",
-    {
-      method:'POST',
-      headers: {
-        "Content-Type": "application/json",
-        "accept":"application/json",
-        Authorization:`Bearer${authToken}`
-      },
-      body: JSON.stringify(e)
-
-    })
+    authAxios.post(`/v1/loan`,e)
+    
     .then((r) => {
       if (r.ok) {
         alert("Registration Successfull")
         
-        // r.json().then((user) => setUser(user));
+       
       }
     });
       
@@ -140,23 +96,14 @@ const AddLoanForm = (authToken) => {
           },
         ]}
       >
-       <DebounceSelect
-      mode="multiple"
-      value={value}
-      placeholder="Select Member Name"
-      fetchOptions={fetchUserList}
-      onChange={(newValue) => {
-        setValue(newValue);
-      }}
-      style={{
-        width: '100%',
-      }}
-    />
+       <Input  />
+     
+     </Form.Item>
       
       
 
 
-      </Form.Item>
+    
 
       <Form.Item 
         name="member_no"

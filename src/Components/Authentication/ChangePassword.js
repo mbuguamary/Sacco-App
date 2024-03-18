@@ -45,6 +45,8 @@ const SignUp = () => {
       if (r.ok) {
         alert("Otp Sent Successfull")
        
+      }else{
+        alert("An Error Occured")
       }
     });
     

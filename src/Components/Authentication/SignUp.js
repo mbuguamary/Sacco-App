@@ -38,7 +38,7 @@ const SignUp = () => {
   return (
     <div className='signup'>
       <form className='frm' onSubmit={handleSubmit}>
-        <h1 className='txt'>Sign Up</h1>
+        <h1 className='txt'>Create an Account</h1>
         <label htmlFor="username">Member No</label>
         <input
           required

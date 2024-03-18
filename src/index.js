@@ -17,12 +17,14 @@ import SignUp from './Components/Authentication/SignUp';
 import Instant from './Components/Loans/Instant';
 import ChangePassword from './Components/Authentication/ChangePassword';
 import DividendList from './Components/Reports/DividendList';
+import Home from './Components/Landing-Page/Home';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
-            <Route path="/" element={<Login/>}/>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/Login" element={<Login/>}/>
             <Route path ="/SignUp" element={<SignUp/>}/>
             <Route path ="/ChangePassword" element={<ChangePassword />}/>
              <Route path="/app" element={<App/>}> 

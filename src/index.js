@@ -15,7 +15,7 @@ import UpdateLoanData from './Components/Loans/UpdateLoanData';
 import SplitDividend from './Components/Loans/SplitDividend';
 import SignUp from './Components/Authentication/SignUp';
 import Instant from './Components/Loans/Instant';
-import CreateUser from './Components/Authentication/CreateUser';
+import ChangePassword from './Components/Authentication/ChangePassword';
 import DividendList from './Components/Reports/DividendList';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,7 +24,7 @@ root.render(
     <Routes>
             <Route path="/" element={<Login/>}/>
             <Route path ="/SignUp" element={<SignUp/>}/>
-            <Route path ="/CreateUser" element={<CreateUser />}/>
+            <Route path ="/ChangePassword" element={<ChangePassword />}/>
              <Route path="/app" element={<App/>}> 
             <Route path="/app/AddLoanForm" element={<AddLoanForm/>}/>
             <Route path="/app/LoanList" element={<LoanList/>}/>

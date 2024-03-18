@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import Dividends from "../Reports/Dividends";
-
-const DividendList = (member_no) => {
+import axios from 'axios'
+const apiUrl='http://localhost:8080/api' ;
+const accessToken =localStorage.getItem("access");
+console.log("ACCESS TOKEN FROM LOCAL STORAGE ", accessToken)
+const authAxios =axios.create({
+  // baseUrl:'http://localhost:8080/api',
+  headers: {
+    Authorization:`Bearer ${accessToken}`,
+    
+  }
+})
+const DividendList = (memNo) => {
 const [dividends, setDividends] = useState([]);
 const [header, setHeader] = useState([]);
 const [member, setMember] = useState([]);
+//${memberNo}
 useEffect(() =>{
-fetch(`http://localhost:8080/api/v1/instant/${member_no}`)
+  authAxios.get(`${apiUrl}/v1/dividend`)
 .then((res) => {
   if (res.ok) {
-  res.json().then((data) => setDividends(data));
+  res.json().then((dividends) => setDividends(dividends));
 } 
 
       
@@ -18,7 +29,7 @@ fetch(`http://localhost:8080/api/v1/instant/${member_no}`)
 },[])
 
 useEffect(() =>{
-  fetch("http://localhost:8080/api/v1/header")
+  authAxios.get(`${apiUrl}/v1/header`)
   .then((res) => {
     if (res.ok) {
       res.json() .then((header) => setHeader(header));
@@ -30,7 +41,7 @@ useEffect(() =>{
   },[])
    
   useEffect(()=> {
-    fetch("http://localhost:8001/member/1")
+    authAxios.get(`${apiUrl}/v1/member/MS317`)
     .then((response) => {
         if (response.ok) {
           response.json().then((member) => setMember(member));
@@ -41,14 +52,20 @@ useEffect(() =>{
 
   return (
     <div>
-      <p>{header.header}</p>
+      {/* <p>header{header.header}</p> */}
         <table >
             <tbody>
             <tr   >
+              <th className='full'> header{header.header_name}</th>
+                
+                </tr>
+                <tr   >
+              
                 <th className='full'>Dividend Statement</th>
                 </tr>
+                
             <tr >
-                <th >Name:{member.holders_name}</th>
+                <th >Name:{member.holdersName}</th>
                 </tr>
             </tbody>
         </table>
@@ -56,12 +73,12 @@ useEffect(() =>{
         <tbody>
        
             <tr >
-                <th className='half' >member_no:{member.acc_no}</th>
+                <th className='half' >member_no:{member.accNo}</th>
                 <th className='half'>tel:{member.tel1}</th>
                 </tr>
                 <tr>
-                <th>email:{member.email_add}</th>
-                <th>Id no:{member.id_no}</th>
+                <th>email:{member.emailAdd}</th>
+                <th>Id no:{member.idNo}</th>
                 </tr>
                 </tbody>
                 </table>
@@ -107,12 +124,10 @@ useEffect(() =>{
         <Dividends
         key={dividend.id}
         id={dividend.id}
-        loanno={dividend.loan_no}
-        purpose={dividend.purpose}
-        cdate={dividend.cdate}
-        sdate={dividend.sdate}
-        period={dividend.period}
+        loanno={dividend.AccName}
+        purpose={dividend.accNo}
         amount={dividend.amount}
+       
         />
       );
         }

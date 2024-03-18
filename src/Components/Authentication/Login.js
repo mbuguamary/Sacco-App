@@ -32,12 +32,13 @@ const Login = () => {
     .then((data) => {
       console.log("sign in res ", data);
       localStorage.setItem('access', data.token);
-      // localStorage.setItem('refresh', data.refresh);
+      localStorage.setItem('member', data.memberNo);
+      const memNo =data.memberNo;
 
         alert("login Successful" );
         window.location.replace("/app");
-        let email=document.querySelector('#email').value
-        document.querySelector('#memno').value=email;
+        let email=document.querySelector('#memberNo').value
+        document.querySelector('#memno').value=memNo;
     })
     .catch(err => console.log(
       "There was an error logging in", err
@@ -60,18 +61,18 @@ const Login = () => {
     >
       <div className='login'>
         <div className='border'>
-          <label>Email</label>
+          <label>Member No</label>
       <Form.Item
       
-        name="email"
+        name="memberNo"
         rules={[
           {
             required: true,
-            message: 'Please input your Email!',
+            message: 'Please input your Member No!',
           },
         ]}
       >
-        <Input id='email' prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+        <Input id='memberNo' autoComplete="off"  prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Member No" />
       </Form.Item>
       <label>Password</label>
       <Form.Item
@@ -94,7 +95,7 @@ const Login = () => {
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
-        <a className="login-form-forgot" href="/CreateUser">
+        <a className="login-form-forgot" href="/ChangePassword">
           Forgot password
         </a>
       </Form.Item>

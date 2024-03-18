@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { LockOutlined } from '@ant-design/icons';
 import { Button,  Form, Input } from 'antd';
+import axios from 'axios';
+const apiUrl='http://localhost:8080/api' ;
+
 
 const layout = {
 
@@ -14,21 +17,40 @@ const layout = {
   };
   
 const CreateUser = () => {
-
+  const [memNo,setMemNo] = useState("")
+  const [key,setKey] = useState("")
     const [form] = Form.useForm();
     function handleSubmit(e) {
         e.preventDefault();
-        fetch("http://localhost:8080/api/v1/auth/register", {
+        fetch(`${apiUrl}/v1/user/register`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            
+          },
+          body: JSON.stringify(e)
+        }).then((r) => {
+          if (r.ok) {
+            alert("Password Updated Successfull")
+            //navigate('/app')
+            window.location.replace("/");
+          }
+        });
+        form.resetFields();
+      }
+      function sendToken(e) {
+        e.preventDefault();
+      
+        fetch(`${apiUrl}/v1/auth/registerOtp`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(e),
+          body: JSON.stringify({memNo,key}),
         }).then((r) => {
           if (r.ok) {
-            alert("Registration Successfull")
-            //navigate('/app')
-            window.location.replace("/app");
+            alert("Otp Sent Successfull")
+           
           }
         });
         form.resetFields();
@@ -45,7 +67,7 @@ const CreateUser = () => {
     <div className='signup'>
     <label>Member No</label>
     <Form.Item
-      name="member_no"
+      name="memNo"
       rules={[
         {
           required: true,
@@ -53,23 +75,29 @@ const CreateUser = () => {
         },
       ]}
     >
-      <Input  placeholder="Member No" />
+      <Input  placeholder="Member No" value={memNo} />
     </Form.Item>
-   
-    <label>Email</label>
+    <Form.Item>
+      
+      <Button type="primary" htmlType="submit" className="login-form-button" onClick={sendToken} >
+      
+        Generate Token
+      </Button>
+      </Form.Item>
+    <label>Token</label>
 <Form.Item
-  name="email"
+  name="otp"
   rules={[
     {
       required: true,
-      message: 'Please input Email!',
+      message: 'Please input Otp!',
       
     },
   ]}
 >
   <Input 
-  type="email"
-  placeholder="Email" />
+  type="otp"
+  placeholder="Otp" value={key} />
 
   </Form.Item>
   <label>Password</label>
@@ -86,7 +114,7 @@ const CreateUser = () => {
            prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
           placeholder="Password"
-          autocomplete="new-password"
+          autoComplete="new-password"
         />
       </Form.Item>
       <label>Confirm Password</label>

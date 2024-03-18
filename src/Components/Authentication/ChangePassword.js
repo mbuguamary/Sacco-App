@@ -2,76 +2,85 @@ import React from 'react'
 import {useNavigate } from 'react-router-dom';
 import { useState} from 'react';
 //import {Link } from 'react-router-dom';
+const apiUrl='http://localhost:8080/api' ;
 
 const SignUp = () => {
-  const [memberNo, setMemberNo] = useState("");
-  const [mobileNo, setMobileNo] = useState("");
-  const [email, setEmail] = useState("");
+  const [memNo, setMemNo] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [otp, setOtp] = useState("");
+  const [passKey, setPassKey] = useState("");
   const navigate = useNavigate();
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("http://localhost:8080/api/v1/auth/register", {
+    fetch("`${apiUrl}/v1/auth/changePassword`", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        memberNo,
-        mobileNo,
-        email,
+        memNo,
+        passKey,
         password,
-        password_confirmation: passwordConfirmation,
-        otp
+        password_confirmation: passwordConfirmation
+        
       }),
     }).then((r) => {
       if (r.ok) {
-        alert("Registration Successfull")
-        navigate('/')
+        alert("Password Changed Successfull")
+        navigate('/app')
         // r.json().then((user) => setUser(user));
       }
     });
+  }
+  function sendToken(e) {
+    e.preventDefault();
+  
+    fetch(`${apiUrl}/v1/auth/registerOtp`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({memNo}),
+    }).then((r) => {
+      if (r.ok) {
+        alert("Otp Sent Successfull")
+       
+      }
+    });
+    
   }
 
   return (
     <div className='signup'>
       <form className='frm' onSubmit={handleSubmit}>
-        <h1 className='txt'>Sign Up</h1>
-        <label htmlFor="username">Member No</label>
+        <h1 className='txt'>Change Password</h1>
+        <label htmlFor="memNo">Member No</label>
         <input
-          required
           type="text"
-          id="member_no"
+          id="memNo"
           autoComplete="off"
-          value={memberNo}
-          onChange={(e) => setMemberNo(e.target.value)}
-        />
-        <label htmlFor="username">Mobile No</label>
-        <input
           required
+          value={memNo}
+          onChange={(e) => setMemNo(e.target.value)}
+        />
+        <button className='btns' type="submit" onClick={sendToken}>Send Otp</button>
+        <label htmlFor="username">OTP</label>
+        
+        <input
           type="text"
-          id="mobile_no"
+          id="passKey"
           autoComplete="off"
-          value={mobileNo}
-          onChange={(e) => setMobileNo(e.target.value)}
-        />
-        <label htmlFor="username">Email</label>
-        <input
           required
-          type="email"
-          id="email"
-          autoComplete="off"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={passKey}
+          onChange={(e) => setPassKey(e.target.value)}
         />
+        
+       
         <label htmlFor="password">Password</label>
         <input
-          title="Must atleast be 8 characters"
-          required 
           type="password"
           id="password"
+          required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="off"
@@ -79,26 +88,16 @@ const SignUp = () => {
         
         <label htmlFor="password">Password Confirmation</label>
         <input
-         pattern= {password}
-          required
           type="password"
           id="password_confirmation"
+          required
           value={passwordConfirmation}
-          errorMessage="passsword dont match"
           onChange={(e) => setPasswordConfirmation(e.target.value)}
           autoComplete="off"
         />
-        <label htmlFor="username">OTP</label>
-        <input
-          required
-          type="text"
-          id="otp"
-          autoComplete="off"
-          value={otp}
-          onChange={(e) => setOtp(e.target.value)}
-        />
+        
        
-        <button className='btns' type="submit">Sign Up</button>
+        <button className='btns' type="submit">Change Password</button>
       </form>
     </div>
   );

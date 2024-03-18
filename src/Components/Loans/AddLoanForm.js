@@ -4,7 +4,9 @@ import React from 'react';
 import axios from 'axios'
 const apiUrl='http://localhost:8080/api' ;
 const accessToken =localStorage.getItem("access");
+const memberno =localStorage.getItem("member");
 console.log("ACCESS TOKEN FROM LOCAL STORAGE ", accessToken)
+console.log("member ", memberno)
 const authAxios =axios.create({
   baseUrl:apiUrl,
   headers: {
@@ -33,7 +35,7 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
-const AddLoanForm = (authToken) => {
+const AddLoanForm = () => {
 
   const [total,setTotal] =useState(0)
   const [value, setValue] = useState([]);

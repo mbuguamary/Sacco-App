@@ -51,3 +51,12 @@ table {
 .full{
   text-align: center;
 }
+.btns{
+  display: block;
+    padding: 5px; 
+    margin: 20px;
+    color: red;
+}
+.txt{
+  color: red;
+}

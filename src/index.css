@@ -11,24 +11,52 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.nav-items{
+  display: flex;
+  flex-direction: row;
+  background-color:black;
+}
+.header{
+  margin-left: 50px;
+}
+
+
+.nav li{
+  list-style-type: none;
+  display: inline-block;
+  text-align: right; 
+  padding: 10px; 
+  margin-left: 100px;
+
+  
+}
+
 .signup{
-  margin-left: 80px;
-  margin-top: 20px;
+   margin-left: 35%;
+   margin-right:25%;
+   width: 30%;
+   margin-top: 5%; 
+   align-items: center; 
+   justify-content: center;  
   align-items: center;
-  justify-content: center; 
   border: 3px solid whitesmoke; 
   border-radius: 10px;
-  margin-right: 700px;
+  
 }
+
 
 .login{
-  margin-left: 80px;
-  margin-top: 20px;
-  align-items: center;
-  justify-content: center; 
-  margin-right: 700px;
+ 
+  margin-left: 35%;
+  margin-right:25%;
+  width: 30%;
+   margin-top: 5%; 
+   align-items: center; 
+   justify-content: center;  
+ 
+  
 
-}
+} 
 
 
 .border{
@@ -55,8 +83,36 @@ table {
   display: block;
     padding: 5px; 
     margin: 20px;
-    color: red;
+    background-color: green;
+    color: white;
 }
 .txt{
+  color: green;
+ 
+}
+.tw{
+  color: green;
+  text-align: center;
+ 
+  padding: 10px;
+}
+.th{
+  color: green; 
+ 
+}
+.bs{
+  background-color: green;
+  color: white;
+}
+
+.bl{
+  background-color: white;
+  color: black;
+  
+}
+/* .login-form-forgot{
   color: red;
 }
+.login-form-button{
+background-color: red;
+} */
